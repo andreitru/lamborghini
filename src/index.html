@@ -7,21 +7,74 @@
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#111111">
-  <title>New site</title>
+  <title>Lamborghini</title>
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/vendor.css">
   <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
-  <div class="site-container">
-    @include('partials/header.html')
-    <img src="img/cover.jpg" alt="Обложка" style="width: 100%;">
-    @include('partials/footer.html')
-    <!-- @include('html/h1.html') пример инклуда -->
-  </div>
-  <script src="js/vendor.js"></script>
-  <script src="js/main.js"></script>
+<div class="site-container">
+  <!--    @include('partials/header.html')-->
+  <section class="main-screen">
+    <div class="main-screen__container">
+      <ul class="main-screen__list left-list list">
+        <li class="list__item">
+          <a href="place.html" class="list__link place">
+            <span class="list__text list__text--top">место</span>
+            <span class="list__text list__text--bottom">проведения</span>
+          </a>
+        </li>
+        <li class="list__item">
+          <a href="academy.html" class="list__link academy">
+            <span class="list__text">академия</span>
+          </a>
+        </li>
+        <li class="list__item">
+          <a href="participants.html" class="list__link participants">
+            <span class="list__text">участники</span>
+          </a>
+        </li>
+        <li class="list__item">
+          <a href="feedback.html" class="list__link feedback">
+            <span class="list__text list__text--top">обратная</span>
+            <span class="list__text list__text--bottom">связь</span>
+          </a>
+        </li>
+        <li class="list__item">
+          <a href="qr.html" class="list__link qr">
+            <span class="list__text">qr</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="main-screen__list right-list list">
+        <li class="list__item">
+          <a href="greeting.html" class="list__link greeting">
+            <span class="list__text">приветствие</span>
+          </a>
+        </li>
+        <li class="list__item">
+          <a href="program.html" class="list__link greeting program">
+            <span class="list__text">программа</span>
+          </a>
+        </li>
+        <li class="list__item">
+          <a href="test-drive.html" class="list__link greeting test-drive">
+            <span class="list__text list__text--top">тест-</span>
+            <span class="list__text list__text--bottom">драйв</span>
+          </a>
+        </li>
+        <li class="list__item">
+          <a href="contacts.html" class="list__link greeting contacts">
+            <span class="list__text">контакты</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+</div>
+<script src="js/vendor.js"></script>
+<script src="js/main.js"></script>
 </body>
 
 </html>
