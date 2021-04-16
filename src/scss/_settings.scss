@@ -58,12 +58,121 @@ ul {
   cursor: pointer;
 }
 
+.btn-submit {
+  align-self: center;
+  margin-top: 55px;
+  border-radius: 5px;
+  width: 90%;
+  height: 57px;
+  max-width: 300px;
+  box-shadow: 0 2px 20px rgba(255, 231, 179, 0.4);
+  font-weight: 700;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #000;
+  background: linear-gradient(217.42deg, #ffc041 12.98%, #f8ce7a 50.58%, #ffc041 80.57%);
+}
+
 .container {
   margin: 0 auto;
-  padding: 0 15px;
-  max-width: 1200px;
+  padding-right: 35px;
+  padding-left: 35px;
+  max-width: 100%;
+  background: url('../img/background-bottom.svg') no-repeat 90% 102%;
 }
 
 .js-focus-visible :focus:not(.focus-visible) {
   outline: none;
 }
+
+.header {
+  position: relative;
+  height: 120px;
+  background: url('../img/main-screen-background-top.svg') no-repeat top left,
+  #1b1b1b;
+  background-size: contain;
+
+  &__link {
+    position: absolute;
+    left: 35px;
+    top: 50px;
+    width: 40px;
+    height: 40px;
+    background: url('../img/arrow.svg') no-repeat center;
+  }
+
+  h2 {
+    margin: 0 auto;
+    padding-top: 60px;
+    width: 60%;
+    text-align: center;
+  }
+}
+
+.title {
+  margin: 0;
+  padding: 0;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 22.3px;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--color-orange);
+}
+
+.text {
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 20px;
+  color: #171717;
+}
+
+.section {
+  overflow: auto;
+  height: 100vh;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 1px solid var(--color-orange);
+  height: 50px;
+  background-color: #404040;
+
+  &__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 7px;
+    height: 100%;
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #737373;
+
+    i {
+      font-style: normal;
+      font-size: 9px;
+      text-transform: uppercase;
+    }
+  }
+
+  &__link--active {
+    position: relative;
+    color: var(--color-orange);
+    background: url('../img/arrow-top.svg') no-repeat center bottom;
+
+    span {
+      position: absolute;
+      bottom: -35px;
+      font-weight: 700;
+      font-size: 22px;
+      white-space: nowrap;
+      text-transform: uppercase;
+    }
+  }
+}
+

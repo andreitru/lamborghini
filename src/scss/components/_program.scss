@@ -1,0 +1,41 @@
+.program {
+  &__list {
+    padding-top: 40px;
+  }
+
+  &__item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 50px;
+    padding-left: 55px;
+    height: 98px;
+    background: url('../img/clock.svg') no-repeat left top;
+
+    &:not(:last-child) {
+      &::before {
+        content: "";
+        position: absolute;
+        left: 12px;
+        top: 33px;
+        width: 2px;
+        height: 55px;
+        background: url("../img/line.svg") no-repeat;
+      }
+    }
+  }
+
+  &__text {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 18px;
+    color: #171717;
+
+    &--small {
+      margin-top: 3px;
+      font-weight: 300;
+      font-size: 13px;
+    }
+  }
+}
+

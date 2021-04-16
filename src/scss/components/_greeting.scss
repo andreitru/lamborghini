@@ -1,0 +1,46 @@
+.greeting {
+  &__main {
+    padding-top: 45px;
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+  }
+
+  &__img {
+    margin-right: 25px;
+    width: 60%;
+  }
+
+  &__leader {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+  }
+
+  &__name {
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 24px;
+    text-transform: uppercase;
+    color: #171717;
+  }
+
+  &__post {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 18px;
+    color: #171717;
+  }
+
+  &__greet {
+    padding-top: 35px;
+    padding-bottom: 50px;
+  }
+
+  &__text {
+    margin-top: 22px;
+  }
+}

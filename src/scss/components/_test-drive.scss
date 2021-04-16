@@ -1,0 +1,76 @@
+.test-drive {
+  &__nav {
+    .nav__link {
+      padding-top: 17px;
+    }
+  }
+
+  &__list {
+    padding-top: 40px;
+  }
+
+  &__item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 40px;
+    padding-left: 65px;
+    height: 98px;
+
+    &--available::before {
+      content: "Доступно";
+      position: absolute;
+      left: 12px;
+      top: 25px;
+      width: 45px;
+      font-weight: 700;
+      font-size: 9px;
+      color: #02bb0a;
+    }
+
+    &--available::after {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 3px;
+      width: 15px;
+      height: 15px;
+      background: url("../img/green-hex.svg") no-repeat;
+    }
+
+    &--completed::before {
+      content: "Пройдено";
+      position: absolute;
+      left: 12px;
+      top: 25px;
+      width: 45px;
+      font-weight: 700;
+      font-size: 9px;
+      color: var(--color-orange);
+    }
+
+    &--completed::after {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 3px;
+      width: 15px;
+      height: 15px;
+      background: url("../img/orange-hex.svg") no-repeat;
+    }
+  }
+
+  &__text {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 20px;
+    color: #171717;
+
+    &--small {
+      margin-top: 3px;
+      font-weight: 300;
+      font-size: 9px;
+      color: #737373;
+    }
+  }
+}

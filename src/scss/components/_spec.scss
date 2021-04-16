@@ -1,0 +1,37 @@
+.spec {
+  &__head {
+    img {
+      width: 100%;
+    }
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    padding-bottom: 50px;
+  }
+
+  &__text {
+    margin-bottom: 10px;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 20px;
+    color: #171717;
+  }
+
+  &__btn {
+    align-self: center;
+    margin-top: 55px;
+    border-radius: 5px;
+    width: 90%;
+    height: 57px;
+    max-width: 300px;
+    box-shadow: 0 2px 20px rgba(255, 231, 179, 0.4);
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #000;
+    background: linear-gradient(217.42deg, #ffc041 12.98%, #f8ce7a 50.58%, #ffc041 80.57%);
+  }
+}

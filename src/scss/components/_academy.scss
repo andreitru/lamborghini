@@ -1,0 +1,47 @@
+.academy {
+  &__nav {
+    .nav__link {
+      padding-top: 17px;
+    }
+  }
+
+  &__list {
+    padding-top: 40px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    padding-bottom: 40px;
+  }
+
+  &__img {
+    margin-right: 15px;
+    width: 100px;
+
+    img {
+      border-radius: 50%;
+    }
+  }
+
+  &__text-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__text {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    text-transform: uppercase;
+    color: #171717;
+
+    &--small {
+      margin-top: 5px;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 20px;
+      color: #737373;
+    }
+  }
+}

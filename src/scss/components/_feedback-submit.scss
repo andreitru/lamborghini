@@ -1,0 +1,18 @@
+.feedback-submit {
+  background-color: #171717;
+
+  &__container {
+    padding-right: 55px;
+    padding-left: 55px;
+  }
+
+  &__header {
+    border-bottom: 1px solid var(--color-orange);
+  }
+
+  &__main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

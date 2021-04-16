@@ -35,6 +35,42 @@
     width: 65%;
     background-position: center top;
     background-repeat: no-repeat;
+
+    &--place {
+      background-image: url('../img/place.svg');
+    }
+
+    &--academy {
+      background-image: url('../img/academy.svg');
+    }
+
+    &--participants {
+      background-image: url('../img/participants.svg');
+    }
+
+    &--feedback {
+      background-image: url('../img/feedback.svg');
+    }
+
+    &--qr {
+      background-image: url('../img/qr.svg');
+    }
+
+    &--greeting {
+      background-image: url('../img/greeting.svg');
+    }
+
+    &--program {
+      background-image: url('../img/program.svg');
+    }
+
+    &--test-drive {
+      background-image: url('../img/test-drive.svg');
+    }
+
+    &--contacts {
+      background-image: url('../img/contacts.svg');
+    }
   }
 
   &__text {
@@ -58,40 +94,3 @@
 .right-list {
   margin-left: -30px;
 }
-
-.place {
-  background-image: url('../img/place.svg');
-}
-
-.academy {
-  background-image: url('../img/academy.svg');
-}
-
-.participants {
-  background-image: url('../img/participants.svg');
-}
-
-.feedback {
-  background-image: url('../img/feedback.svg');
-}
-
-.qr {
-  background-image: url('../img/qr.svg');
-}
-
-.greeting {
-  background-image: url('../img/greeting.svg');
-}
-
-.program {
-  background-image: url('../img/program.svg');
-}
-
-.test-drive {
-  background-image: url('../img/test-drive.svg');
-}
-
-.contacts {
-  background-image: url('../img/contacts.svg');
-}
-
