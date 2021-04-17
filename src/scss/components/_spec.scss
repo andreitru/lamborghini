@@ -21,7 +21,10 @@
   }
 
   &__btn {
+    display: flex;
+    align-items: center;
     align-self: center;
+    justify-content: center;
     margin-top: 55px;
     border-radius: 5px;
     width: 90%;

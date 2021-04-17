@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body>
+<body class="black-body">
 <div class="site-container">
   <section class="section test">
     <header class="header">
@@ -25,33 +25,34 @@
     </div>
     <div class="test__container container">
       <main class="test__main">
-        <span class="test__title">Вопрос 1</span>
-        <p class="test__question">Оцените работу подвески <span class="test__auto">Mercedes-Benz GLE63</span></p>
+        <span class="test__title">Вопрос <span class="test__title--count">1</span></span>
+        <p class="test__question">Оцените работу подвески</p>
+        <span class="test__question test__auto">Mercedes-Benz GLE63</span>
         <span class="test__choose">Выберите от 1 до 10</span>
         <div class="star-rating">
-          <input id="star-10" type="radio" name="rating" value="star-10">
+          <input id="star-10" type="radio" name="rating" value="10">
           <label for="star-10" title="10 stars"></label>
-          <input id="star-9" type="radio" name="rating" value="star-9">
+          <input id="star-9" type="radio" name="rating" value="9">
           <label for="star-9" title="9 stars"></label>
-          <input id="star-8" type="radio" name="rating" value="star-8">
+          <input id="star-8" type="radio" name="rating" value="8">
           <label for="star-8" title="8 stars"></label>
-          <input id="star-7" type="radio" name="rating" value="star-7">
+          <input id="star-7" type="radio" name="rating" value="7">
           <label for="star-7" title="7 stars"></label>
-          <input id="star-6" type="radio" name="rating" value="star-6">
+          <input id="star-6" type="radio" name="rating" value="6">
           <label for="star-6" title="6 stars"></label>
-          <input id="star-5" type="radio" name="rating" value="star-5">
+          <input id="star-5" type="radio" name="rating" value="5">
           <label for="star-5" title="5 stars"></label>
-          <input id="star-4" type="radio" name="rating" value="star-4">
+          <input id="star-4" type="radio" name="rating" value="4">
           <label for="star-4" title="4 stars"></label>
-          <input id="star-3" type="radio" name="rating" value="star-3">
+          <input id="star-3" type="radio" name="rating" value="3">
           <label for="star-3" title="3 stars"></label>
-          <input id="star-2" type="radio" name="rating" value="star-2">
+          <input id="star-2" type="radio" name="rating" value="2">
           <label for="star-2" title="2 stars"></label>
-          <input id="star-1" type="radio" name="rating" value="star-1">
+          <input id="star-1" type="radio" name="rating" value="1">
           <label for="star-1" title="1 star"></label>
         </div>
-        <span class="test__counter">1 вопрос из 10</span>
-        <button class="btn-reset test__btn">Далее</button>
+        <span class="test__counter"><span class="test__counter--count">1</span> вопрос из 9</span>
+        <button class="btn-reset test__btn btn-submit" disabled>Далее</button>
       </main>
     </div>
   </section>

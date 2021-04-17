@@ -1,0 +1,40 @@
+.registration {
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  &__checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+
+  &__label {
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 14px;
+    color: var(--color-orange);
+  }
+}
+
+.registration__checkbox + label {
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    margin-right: 15px;
+    border: 2px solid var(--color-orange);
+    border-radius: 5px;
+    height: 28px;
+    min-width: 28px;
+    background-position: center center;
+    background-size: 60% 60%;
+    background-repeat: no-repeat;
+  }
+}
+
+.registration__checkbox:checked + label::before {
+  background-image: url("../img/check-reg.svg");
+}

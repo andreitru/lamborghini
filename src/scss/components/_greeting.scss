@@ -26,6 +26,15 @@
     line-height: 24px;
     text-transform: uppercase;
     color: #171717;
+
+    @include w450 {
+      font-size: 18px;
+    }
+
+    @include mobile-xs {
+      font-size: 14px;
+      line-height: 16px;
+    }
   }
 
   &__post {
@@ -33,6 +42,15 @@
     font-size: 16px;
     line-height: 18px;
     color: #171717;
+
+    @include w450 {
+      font-size: 14px;
+    }
+
+    @include mobile-xs {
+      font-size: 10px;
+      line-height: 12px;
+    }
   }
 
   &__greet {

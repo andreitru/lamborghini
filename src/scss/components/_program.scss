@@ -35,6 +35,14 @@
       margin-top: 3px;
       font-weight: 300;
       font-size: 13px;
+
+      @include mobile-xs {
+        font-size: 11px;
+      }
+    }
+
+    @include mobile-xs {
+      font-size: 16px;
     }
   }
 }

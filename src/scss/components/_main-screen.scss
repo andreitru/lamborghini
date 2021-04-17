@@ -25,6 +25,11 @@
     height: 120px;
     background: url('../img/main-screen-hexagon.svg') no-repeat center;
     background-size: contain;
+
+    @include small-height {
+      width: 123px;
+      height: 90px;
+    }
   }
 
   &__link {
@@ -87,6 +92,10 @@
 
     &--bottom {
       background-image: linear-gradient(to bottom, darken(#ffc041, 10%), darken(#ffc041, 80%));
+    }
+
+    @include small-height {
+      font-size: 9px;
     }
   }
 }

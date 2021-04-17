@@ -15,3 +15,21 @@
     @content;
   }
 }
+
+@mixin mobile-xs {
+  @media (max-width: (380px)) {
+    @content;
+  }
+}
+
+@mixin w450 {
+  @media (max-width: (450px)) {
+    @content;
+  }
+}
+
+@mixin small-height {
+  @media (max-height: 700px) {
+    @content;
+  }
+}

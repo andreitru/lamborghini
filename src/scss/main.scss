@@ -1,10 +1,14 @@
 // @import 'vars'; если используете scss-переменные - подключите сюда vars, но удалите root из _vars.scss
-
+@import "mixins";
+@import "./components/loading";
+@import "./components/access";
+@import "./components/registration";
 @import "./components/main-screen";
 @import "./components/greeting";
 @import "./components/place";
 @import "./components/program";
 @import "./components/test-drive";
+@import "./components/test-confirm";
 @import "./components/academy";
 @import "./components/participants";
 @import "./components/contacts";
@@ -12,3 +16,4 @@
 @import "./components/feedback-submit";
 @import "./components/spec";
 @import "./components/tests";
+@import "./components/qr";

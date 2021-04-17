@@ -18,6 +18,7 @@
   &__img {
     margin-right: 15px;
     width: 100px;
+    max-width: 30%;
 
     img {
       border-radius: 50%;
@@ -42,6 +43,14 @@
       font-size: 16px;
       line-height: 20px;
       color: #737373;
+
+      @include mobile-xs {
+        font-size: 14px;
+      }
+    }
+
+    @include mobile-xs {
+      font-size: 18px;
     }
   }
 }

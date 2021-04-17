@@ -72,6 +72,14 @@
       font-size: 18px;
       line-height: 20px;
       color: #737373;
+
+      @include mobile-xs {
+        font-size: 16px;
+      }
+    }
+
+    @include mobile-xs {
+      font-size: 18px;
     }
   }
 }
