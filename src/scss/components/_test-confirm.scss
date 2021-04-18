@@ -1,20 +1,24 @@
 .test-confirm {
-  padding-bottom: 50px;
-
   &__nav {
     .nav__link {
       padding-top: 17px;
     }
   }
 
+  &__container {
+    height: 75vh;
+  }
+
   &__main {
-    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
   }
 
   &__item {
     display: flex;
     flex-direction: column;
-    padding-bottom: 40px;
     padding-left: 30px;
     background: url('../img/black-hex.svg') no-repeat left 5px;
   }
@@ -44,8 +48,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 45%;
-    max-width: 200px;
+    //width: 45%;
+    //max-width: 200px;
 
     &--back {
       border: 2px solid var(--color-orange);

@@ -1,7 +1,4 @@
 .test {
-  padding-bottom: 50px;
-  //background-color: #171717;
-
   &__nav {
     .nav__link {
       padding-top: 17px;
@@ -92,10 +89,10 @@
   }
 
   @include mobile-xs {
+    margin-bottom: 1vw;
     width: 15vw;
     height: 15vw;
     line-height: 15vw;
-    margin-bottom: 1vw;
   }
 }
 

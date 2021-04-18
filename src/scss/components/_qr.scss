@@ -19,14 +19,19 @@
     line-height: 20px;
     text-align: center;
     color: var(--color-white);
+
+    &--hidden {
+      display: none;
+    }
   }
 
   &__canvas {
-    clip-path: polygon(25% 0%, 75% 0%, 95% 50%, 75% 100%, 25% 100%, 5% 50%);
+    //clip-path: polygon(25% 0%, 75% 0%, 95% 50%, 75% 100%, 25% 100%, 5% 50%);
+    clip-path: polygon(25% 3%, 75% 3%, 95% 50%, 75% 97%, 25% 97%, 5% 50%);
     margin-bottom: auto;
     width: 100%;
     height: auto;
-    max-width: 400px;
+    max-width: 346px;
     max-height: 300px;
   }
 
@@ -34,6 +39,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 50px;
+  }
+
+  &__wrong {
+    display: none;
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+    color: var(--color-white);
+
+    &--visible {
+      display: block;
+    }
   }
 }

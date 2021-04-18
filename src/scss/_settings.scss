@@ -35,13 +35,11 @@ html {
 body {
   margin: 0;
   font-family: "glinterstate", sans-serif;
-  background: url("../img/background-bottom.svg") no-repeat bottom right,
-  var(--color-white);
+  background: var(--color-white);
 }
 
 .black-body {
-  background: url("../img/background-bottom.svg") no-repeat bottom right,
-  #171717;
+  background: #171717;
 }
 
 img {
@@ -103,16 +101,16 @@ ul {
   background: linear-gradient(217.42deg, #ffc041 12.98%, #f8ce7a 50.58%, #ffc041 80.57%);
 
   @include mobile-xs {
-    font-size: 14px;
+    font-size: 13px;
   }
 }
 
 .container {
   margin: 0 auto;
   padding-right: 35px;
+  padding-bottom: 50px;
   padding-left: 35px;
   max-width: 100%;
-  //background: url('../img/background-bottom.svg') no-repeat 90% 102%;
 }
 
 .js-focus-visible :focus:not(.focus-visible) {
@@ -176,7 +174,9 @@ ul {
 
 .section {
   overflow: auto;
-  height: 100vh;
+  min-height: 100vh;
+  background: url('../img/background-bottom.svg') no-repeat 94% 102%;
+  background-size: 25vw;
 }
 
 .nav {
@@ -241,6 +241,10 @@ ul {
       font-size: 18px;
       text-align: center;
       color: var(--color-orange);
+
+      @include mobile-xs {
+        font-size: 16px;
+      }
     }
   }
 }

@@ -1,5 +1,7 @@
 .spec {
   &__head {
+    border-top: 1px solid var(--color-orange);
+
     img {
       width: 100%;
     }
@@ -9,7 +11,6 @@
     display: flex;
     flex-direction: column;
     margin-top: 30px;
-    padding-bottom: 50px;
   }
 
   &__text {

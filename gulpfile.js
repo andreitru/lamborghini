@@ -45,7 +45,7 @@ const styles = () => {
     .pipe(autoprefixer({
       cascade: false,
     }))
-    .pipe(gulpif(isProd, cleanCSS({ level: 2 })))
+    // .pipe(gulpif(isProd, cleanCSS({ level: 2 })))
     .pipe(gulpif(!isProd, sourcemaps.write('.')))
     .pipe(dest('./app/css/'))
     .pipe(browserSync.stream());
@@ -72,7 +72,7 @@ const scripts = () => {
 			presets: ['@babel/env']
 		}))
     .pipe(concat('main.js'))
-    .pipe(gulpif(isProd, uglify().on("error", notify.onError())))
+    // .pipe(gulpif(isProd, uglify().on("error", notify.onError())))
     .pipe(gulpif(!isProd, sourcemaps.write('.')))
     .pipe(dest('./app/js'))
     .pipe(browserSync.stream());
@@ -159,9 +159,9 @@ const rewrite = () => {
 
 const htmlMinify = () => {
 	return src('app/**/*.html')
-		.pipe(htmlmin({
-			collapseWhitespace: true
-		}))
+		// .pipe(htmlmin({
+		// 	collapseWhitespace: true
+		// }))
 		.pipe(dest('app'));
 }
 

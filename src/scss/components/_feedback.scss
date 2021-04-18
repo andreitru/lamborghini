@@ -1,7 +1,4 @@
 .feedback {
-  padding-bottom: 50px;
-  //background-color: #171717;
-
   &__header {
     border-bottom: 1px solid var(--color-orange);
   }
@@ -14,7 +11,7 @@
   }
 
   &__textarea {
-    margin-bottom: 45px;
+    margin-bottom: auto;
     border: 2px solid var(--color-orange);
     padding: 15px;
     width: 100%;
@@ -31,5 +28,12 @@
       text-align: center;
       color: var(--color-white);
     }
+  }
+
+  &__btn:disabled {
+    border: 2px solid var(--color-orange);
+    box-shadow: none;
+    color: var(--color-orange);
+    background: transparent;
   }
 }
