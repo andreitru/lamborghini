@@ -13,9 +13,49 @@
     display: flex;
     align-items: center;
     padding-bottom: 40px;
+
+    &:nth-child(odd) {
+      .academy__img {
+        background-color: var(--color-orange);
+      }
+    }
+
+    &:nth-child(even) {
+      .academy__img {
+        background-color: #aa8f59;
+      }
+    }
   }
 
   &__img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 25px;
+    border-radius: 50%;
+    height: 100px;
+    min-width: 100px;
+
+    span {
+      position: relative;
+      font-weight: 700;
+      font-size: 36px;
+      text-transform: uppercase;
+      color: var(--color-white);
+
+      &::before {
+        content: "";
+        position: absolute;
+        right: -21px;
+        bottom: -22px;
+        width: 25px;
+        height: 25px;
+        background: url("../img/check.svg") no-repeat center;
+      }
+    }
+  }
+
+  &__img--coach {
     margin-right: 15px;
     width: 100px;
     max-width: 30%;

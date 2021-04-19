@@ -246,3 +246,15 @@ if (participantsItems) {
   })
 }
 
+const academyItems = document.querySelectorAll('.academy__item');
+
+if (academyItems) {
+  academyItems.forEach(item => {
+    const academy = item.querySelector('.academy__text').textContent;
+    const img = item.querySelector('.academy__img');
+    const imgText = img.querySelector('span');
+    const matches = academy.split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'')
+
+    imgText.textContent = matches;
+  })
+}
