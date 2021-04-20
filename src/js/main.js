@@ -106,7 +106,6 @@ if (testTitleCount) { // проверяем находимся ли мы на с
 
 // qr scanner
 
-const qrcode = window.qrcode;
 
 const video = document.createElement("video");
 const canvasElement = document.getElementById("qr-canvas");
@@ -117,12 +116,48 @@ const qrText = document.querySelector(".qr__text");
 const urls = ['x6m', 'rsq8', 'range', 'gle63s', 'g63', 'dbx', 'cullinan', 'cayenne', 'bentayga'];
 
 if (canvasElement) {
+  /////////////
+  const {createClient} = supabase
+  supabase = createClient(supabaseUrl, supabaseKey);
+
+  let cars = [];
+
+  const getQRData = async () => {
+    try {
+      return await supabase
+        .from('qr_data')
+        .select('*');
+    } catch (error) {
+      console.log('Error: ', error)
+    }
+  }
+
+  getQRData().then(res => {
+    cars = res.data
+    // console.log(res)
+    // console.log(cars)
+  });
+
+
+
+  /////////////////
+
+  const qrcode = window.qrcode;
+
   const canvas = canvasElement.getContext("2d");
 
   let scanning = false;
 
+
+
   qrcode.callback = res => {
-    if (urls.indexOf(res.split('-')[0]) < 0) { // проверяем полученный результат на соответствие url
+    // let id = cars.filter(function(e) {
+    //   return e.id === res
+    // })
+    // console.log(id)
+    // console.log(res)
+    // if (urls.indexOf(res.split('-')[0]) < 0) { // проверяем полученный результат на соответствие url
+    if (!id) {
       scanning = false;
       video.srcObject.getTracks().forEach(track => {
         track.stop();
@@ -131,13 +166,17 @@ if (canvasElement) {
       // если url неверный, показываем ошибку и скрываем текст
       qrWrong.classList.add('qr__wrong--visible');
       qrText.classList.add('qr__text--hidden');
+      console.log(res)
+      console.log(id)
     } else { // если url верный, переходим на соответствующую страницу
       scanning = false
       video.srcObject.getTracks().forEach(track => {
         track.stop();
       });
       canvasElement.hidden = true;
-      document.location.href = `${res}.html`
+      console.log(res)
+      console.log(id)
+      // document.location.href = `${res}.html`
     }
   };
 
@@ -207,8 +246,9 @@ if (headerLink) {
     const testDriveHeader = document.querySelector(".test-drive__header");
     const academyHeader = document.querySelector('.academy__header');
     const programHeader = document.querySelector('.program__header');
+    const feedbackHeader = document.querySelector('.feedback-submit__header');
 
-    if (headerLink.parentNode === testDriveHeader || headerLink.parentNode === academyHeader || headerLink.parentNode === programHeader) {
+    if (headerLink.parentNode === testDriveHeader || headerLink.parentNode === academyHeader || headerLink.parentNode === programHeader || headerLink.parentNode === feedbackHeader) {
       return;
     } else {
       e.preventDefault();
@@ -218,33 +258,7 @@ if (headerLink) {
   })
 }
 
-
-// изменение кнопки отправить на экране обратная связь feedback
-
-const textarea = document.getElementById('feedback');
-
-if (textarea) {
-  const button = document.getElementById('feedback-btn');
-  textarea.addEventListener('input', function () {
-    button.disabled = this.value.trim().length === 0;
-  })
-}
-
-
 // генерация аватарок
-
-const participantsItems = document.querySelectorAll('.participants__item');
-
-if (participantsItems) {
-  participantsItems.forEach(item => {
-    const participant = item.querySelector('.participants__text').textContent;
-    const img = item.querySelector('.participants__img');
-    const imgText = img.querySelector('span');
-    const matches = participant.split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'')
-
-    imgText.textContent = matches;
-  })
-}
 
 const academyItems = document.querySelectorAll('.academy__item');
 
@@ -253,8 +267,154 @@ if (academyItems) {
     const academy = item.querySelector('.academy__text').textContent;
     const img = item.querySelector('.academy__img');
     const imgText = img.querySelector('span');
-    const matches = academy.split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'')
+    const matches = academy.split(/\s/).reduce((response, word) => response += word.slice(0, 1), '')
 
     imgText.textContent = matches;
+  })
+}
+
+
+// supabase
+
+// форма регистрации
+const regForm = document.querySelector('.registration__form');
+
+if (regForm) {
+  const {createClient} = supabase
+  supabase = createClient(supabaseUrl, supabaseKey);
+
+  const regName = document.querySelector('input[name="name"]');
+  const regSurname = document.querySelector('input[name="surname"]');
+  const regDCName = document.querySelector('input[name="dc name"]');
+  const regPosition = document.querySelector('input[name="position"]');
+
+
+  regForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const user = {
+      'firstName': regName.value,
+      'secondName': regSurname.value,
+      'dealerCenter': regDCName.value,
+      'position': regPosition.value
+    }
+
+    const createUser = async () => {
+      try {
+        let newUser = await supabase
+          .from('registered_users')
+          .insert([
+            user
+          ])
+
+        return localStorage.setItem('userID', newUser.data[0].id)
+      } catch (error) {
+        console.log('Error: ', error)
+      }
+    }
+
+    createUser().then(() => window.location.href = '/');
+  })
+}
+
+// список участников
+
+const participantsList = document.querySelector('.participants__list');
+
+if (participantsList) {
+  const {createClient} = supabase
+  supabase = createClient(supabaseUrl, supabaseKey);
+
+  let users = []
+
+  const getUsers = async () => {
+    try {
+      let user = await supabase
+        .from('registered_users')
+        .select('*')
+
+      return user;
+    } catch (error) {
+      console.log('Error: ', error)
+    }
+  }
+
+  getUsers().then(response => {
+    users = response.data;
+
+    for (let i = 0; i < users.length; i++) {
+      const item = document.createElement('li');
+      item.classList.add('participants__item');
+      const itemImg = document.createElement('div')
+      itemImg.classList.add('participants__img');
+      item.append(itemImg);
+      const itemImgSpan = document.createElement('span');
+      itemImg.append(itemImgSpan);
+      const itemTextContainer = document.createElement('div');
+      itemTextContainer.classList.add('participants__text-container');
+      item.append(itemTextContainer);
+      const itemText = document.createElement('span');
+      itemText.classList.add('participants__text');
+      itemTextContainer.append(itemText)
+      const itemTextSmall = document.createElement('span');
+      itemTextSmall.classList.add('participants__text--small');
+      itemTextContainer.append(itemTextSmall)
+
+      itemText.textContent = `${users[i].firstName} ${users[i].secondName}`;
+
+      itemTextSmall.textContent = `${users[i].dealerCenter}, ${users[i].position}`
+
+      participantsList.append(item)
+
+      // генерируем аватарки
+      const participantsItems = document.querySelectorAll('.participants__item');
+
+      participantsItems.forEach(item => {
+        const participant = item.querySelector('.participants__text').textContent;
+        const img = item.querySelector('.participants__img');
+        const imgText = img.querySelector('span');
+        const matches = participant.split(/\s/).reduce((response, word) => response += word.slice(0, 1), '')
+
+        imgText.textContent = matches;
+      })
+    }
+  })
+}
+
+// обратная связь
+
+const feedbackForm = document.querySelector('.feedback__form');
+
+if (feedbackForm) {
+  const {createClient} = supabase
+  supabase = createClient(supabaseUrl, supabaseKey);
+
+  // меняем кнопку отправить при вводе текста
+  const textarea = document.getElementById('feedback');
+  const button = document.getElementById('feedback-btn');
+  textarea.addEventListener('input', function () {
+    button.disabled = this.value.trim().length === 0;
+  })
+
+  feedbackForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const newMessage = {
+      'userId': localStorage.getItem('userID'),
+      'feedback': textarea.value
+    }
+
+    const createMessage = async () => {
+      try {
+        return await supabase
+          .from('users_feedback')
+          .insert([
+            newMessage
+          ])
+      } catch (error) {
+        console.log('Error: ', error)
+      }
+    }
+
+    createMessage().then(() => window.location.href = 'feedback-submit.html');
   })
 }

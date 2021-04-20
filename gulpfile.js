@@ -68,9 +68,10 @@ const scripts = () => {
   return src(
     ['./src/js/functions/**.js', './src/js/components/**.js', './src/js/main.js'])
     .pipe(gulpif(!isProd, sourcemaps.init()))
-		.pipe(babel({
-			presets: ['@babel/env']
-		}))
+		// .pipe(babel({
+		// 	presets: ['@babel/env'],
+    //   // plugins: ["@babel/transform-runtime"]
+		// }))
     .pipe(concat('main.js'))
     // .pipe(gulpif(isProd, uglify().on("error", notify.onError())))
     .pipe(gulpif(!isProd, sourcemaps.write('.')))

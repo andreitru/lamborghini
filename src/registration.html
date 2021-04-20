@@ -16,18 +16,19 @@
 <body>
 <div class="site-container">
   <section class="loading section registration">
-    <form action="" class="registration__form form">
+    <form class="registration__form form">
       <input type="text" required name="name" class="registration__input form__input" placeholder="Имя">
       <input type="text" required name="surname" class="registration__input form__input" placeholder="Фамилия">
       <input type="text" required name="dc name" class="registration__input form__input" placeholder="Название ДЦ">
       <input type="text" required name="position" class="registration__input form__input" placeholder="Должность">
       <input type="checkbox" name="personal data" id="checkbox" class="registration__checkbox" required>
       <label for="checkbox" class="registration__label">Даю согласие на обработку персональных данных</label>
-      <button class="btn-reset btn-submit registration__btn">Зарегистрироваться</button>
+      <button class="btn-reset btn-submit registration__btn" type="submit">Зарегистрироваться</button>
     </form>
   </section>
 </div>
 <script src="js/vendor.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 <script src="js/main.js"></script>
 </body>
 
