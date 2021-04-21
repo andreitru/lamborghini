@@ -1,3 +1,13 @@
+// страница регистрации
+
+const mainScreen = document.querySelector('.main-screen');
+
+if (mainScreen) {
+  if (!localStorage.getItem('userID')) {
+    window.location.href = 'registration.html';
+  }
+}
+
 // тесты
 
 const testAuto = document.querySelectorAll('.test-drive__text');
@@ -68,8 +78,39 @@ if (testTitleCount) { // проверяем находимся ли мы на с
     })
   })
 
+  const autoNames = {
+    'Lamborghini Urus': 'Urus',
+    'Porsche Cayenne Turbo': 'Cayenne',
+    'Bentley Bentayga': 'Bentayga',
+    'Mercedes-Benz G63': 'BenzG63',
+    'Mercedes-Benz GLE63': 'BenzGLE63',
+    'Range Rover SVAutobiography Dynamic Black': 'SVAutobiography',
+    'BMW X6M': 'X6M',
+    'Audi RS Q8': 'RSQ8',
+    'Rolls-Royce Cullinan': 'Cullinan',
+    'Aston Martin DBX': 'DBX'
+  }
+
+  const {createClient} = supabase
+  supabase = createClient(supabaseUrl, supabaseKey);
+
+  const results = {
+    userId: localStorage.getItem('userID'),
+    modelName: autoNames[sessionStorage.getItem('testAuto')],
+    question1: 0,
+    question2: 0,
+    question3: 0,
+    question4: 0,
+    question5: 0,
+    question6: 0,
+    question7: 0,
+    question8: 0,
+    question9: 0,
+  }
+
   button.addEventListener('click', function () {
-    console.log(`Автомобиль ${sessionStorage.getItem('testAuto')} вопрос №${counter} оценка ${rating}`);
+    results[`question${counter}`] = rating;
+
     button.setAttribute('disabled', 'true');
     radio.forEach(item => { // сбрасываем выбранные звезды
       item.checked = false;
@@ -93,7 +134,22 @@ if (testTitleCount) { // проверяем находимся ли мы на с
 
       localStorage.setItem(`${sessionStorage.getItem('testAuto')}`, strDate) // пишем дату прохождения в localStorage
 
-      window.location.href = "test-drive.html"
+      // отправляем результаты в базу данных
+      const sendResults = async () => {
+        try {
+          return await supabase
+            .from('test_results')
+            .insert([
+              results
+            ]);
+        } catch (error) {
+          console.log('Error: ', error)
+        }
+      }
+
+      sendResults().then(() => window.location.href = "test-drive.html");
+
+      // window.location.href = "test-drive.html"
     } else {
       counter++;
       question.textContent = `${questions[counter]}`;
@@ -106,7 +162,6 @@ if (testTitleCount) { // проверяем находимся ли мы на с
 
 // qr scanner
 
-
 const video = document.createElement("video");
 const canvasElement = document.getElementById("qr-canvas");
 const outputData = document.getElementById("outputData");
@@ -116,7 +171,7 @@ const qrText = document.querySelector(".qr__text");
 const urls = ['x6m', 'rsq8', 'range', 'gle63s', 'g63', 'dbx', 'cullinan', 'cayenne', 'bentayga'];
 
 if (canvasElement) {
-  /////////////
+
   const {createClient} = supabase
   supabase = createClient(supabaseUrl, supabaseKey);
 
@@ -134,13 +189,7 @@ if (canvasElement) {
 
   getQRData().then(res => {
     cars = res.data
-    // console.log(res)
-    // console.log(cars)
   });
-
-
-
-  /////////////////
 
   const qrcode = window.qrcode;
 
@@ -149,34 +198,33 @@ if (canvasElement) {
   let scanning = false;
 
 
-
   qrcode.callback = res => {
-    // let id = cars.filter(function(e) {
-    //   return e.id === res
-    // })
-    // console.log(id)
-    // console.log(res)
+    let id = cars.find(function (e) {
+      return e.id === res
+    })
+
     // if (urls.indexOf(res.split('-')[0]) < 0) { // проверяем полученный результат на соответствие url
     if (!id) {
-      scanning = false;
-      video.srcObject.getTracks().forEach(track => {
-        track.stop();
-      });
-      canvasElement.hidden = true;
+      // scanning = false;
+      // video.srcObject.getTracks().forEach(track => {
+      //   track.stop();
+      // });
+      // canvasElement.hidden = true;
       // если url неверный, показываем ошибку и скрываем текст
-      qrWrong.classList.add('qr__wrong--visible');
-      qrText.classList.add('qr__text--hidden');
-      console.log(res)
-      console.log(id)
+      // qrWrong.classList.add('qr__wrong--visible');
+      // qrText.classList.add('qr__text--hidden');
+      qrText.textContent = 'Некорректный QR код'
+      tick();
+      scan();
     } else { // если url верный, переходим на соответствующую страницу
       scanning = false
       video.srcObject.getTracks().forEach(track => {
         track.stop();
       });
       canvasElement.hidden = true;
-      console.log(res)
-      console.log(id)
       // document.location.href = `${res}.html`
+      sessionStorage.setItem('carSpec', JSON.stringify(id))
+      document.location.href = 'spec.html';
     }
   };
 
@@ -205,9 +253,23 @@ if (canvasElement) {
     try {
       qrcode.decode();
     } catch (e) {
-      setTimeout(scan, 300);
+      setTimeout(scan, 500);
     }
   }
+}
+
+// страница с характеристиками
+
+const specTitle = document.querySelector('.spec__title');
+
+if (specTitle) {
+  const specText = document.querySelector('.spec__text');
+  const img = document.querySelector('.spec__img');
+  const car = JSON.parse(sessionStorage.getItem('carSpec'));
+  specTitle.textContent = car.title;
+  specText.textContent = car.description;
+  img.setAttribute('src', `/img/${car.id.split('-')[0] === 'range' ? 'range-rover' : car.id.split('-')[0]}/${car.id.split('-')[1] === 'rover' ? car.id.split('-')[2] : car.id.split('-')[1]}.jpg`);
+  img.setAttribute('alt', car.title);
 }
 
 // окно с изображением карты
@@ -247,8 +309,9 @@ if (headerLink) {
     const academyHeader = document.querySelector('.academy__header');
     const programHeader = document.querySelector('.program__header');
     const feedbackHeader = document.querySelector('.feedback-submit__header');
+    const specHeader = document.querySelector('.spec__header');
 
-    if (headerLink.parentNode === testDriveHeader || headerLink.parentNode === academyHeader || headerLink.parentNode === programHeader || headerLink.parentNode === feedbackHeader) {
+    if (headerLink.parentNode === testDriveHeader || headerLink.parentNode === academyHeader || headerLink.parentNode === programHeader || headerLink.parentNode === feedbackHeader || headerLink.parentNode === specHeader) {
       return;
     } else {
       e.preventDefault();
