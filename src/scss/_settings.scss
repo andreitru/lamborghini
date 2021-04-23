@@ -30,6 +30,7 @@ html {
 *::before,
 *::after {
   box-sizing: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -115,6 +116,12 @@ ul {
   text-transform: uppercase;
   color: #000;
   background: linear-gradient(217.42deg, #ffc041 12.98%, #f8ce7a 50.58%, #ffc041 80.57%);
+
+  &:active {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    background: linear-gradient(217.42deg, rgba(255, 191, 64, 0.7) 12.98%, rgba(247, 205, 121, 0.7) 50.58%, rgba(255, 191, 64, 0.7) 80.57%);
+  }
 
   @include mobile-xs {
     font-size: 13px;
