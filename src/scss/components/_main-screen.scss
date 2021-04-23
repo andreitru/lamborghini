@@ -1,9 +1,8 @@
 .main-screen {
   height: 100vh;
-  background:
-    url('../img/main-screen-background-top.svg') no-repeat top right,
-    url('../img/main-screen-background-bottom.svg') no-repeat bottom right,
-    linear-gradient(to bottom, #1b1b1b, #000);
+  background: url('../img/main-screen-background-top.svg') no-repeat top right,
+  url('../img/main-screen-background-bottom.svg') no-repeat bottom right,
+  linear-gradient(to bottom, #1b1b1b, #000);
 
   &__container {
     display: flex;
@@ -17,6 +16,7 @@
 
 .list {
   &__item {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,6 +26,20 @@
     background: url('../img/main-screen-hexagon.svg') no-repeat center;
     background-size: contain;
 
+    //&::after {
+    //  content: "";
+    //  position: absolute;
+    //  left: 0;
+    //  top: 0;
+    //  bottom: 0;
+    //  right: 0;
+    //  clip-path: polygon(28% 1%, 73% 0%, 94% 50%, 73% 100%, 27% 100%, 5% 50%);
+    //  width: 100%;
+    //  height: 100%;
+    //  background-color: transparent;
+    //  transition: background-color 0.3s;
+    //}
+
     @include small-height {
       width: 123px;
       height: 90px;
@@ -33,6 +47,7 @@
   }
 
   &__link {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,6 +55,25 @@
     width: 65%;
     background-position: center top;
     background-repeat: no-repeat;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 1000;
+      clip-path: polygon(25% 0%, 75% 0%, 99% 50%, 75% 100%, 25% 100%, 0% 50%);
+      width: 150px;
+      height: 120px;
+      background-color: transparent;
+      transform: translate(-50%, -50%);
+    }
+
+    &:active {
+      &::after {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+    }
 
     &--place {
       background-image: url('../img/place.svg');
@@ -75,6 +109,14 @@
 
     &--contacts {
       background-image: url('../img/contacts.svg');
+    }
+
+    @include small-height {
+      &::after {
+        clip-path: polygon(29% 0%, 71% 0%, 94% 51%, 73% 102%, 27% 100%, 6% 50%);
+        width: 123px;
+        height: 90px;
+      }
     }
   }
 

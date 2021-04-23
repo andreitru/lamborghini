@@ -37,8 +37,7 @@ body {
   position: relative;
   margin: 0;
   font-family: "glinterstate", sans-serif;
-  background:
-    //url('../img/background-bottom.svg') no-repeat 94% 102%,
+  background: //url('../img/background-bottom.svg') no-repeat 94% 102%,
     var(--color-white);
 
   &::after {
@@ -54,8 +53,7 @@ body {
 }
 
 .black-body {
-  background:
-    //url('../img/background-bottom.svg') no-repeat 94% 102%,
+  background: //url('../img/background-bottom.svg') no-repeat 94% 102%,
     #171717;
 }
 
@@ -153,7 +151,21 @@ ul {
     top: 40px;
     width: 40px;
     height: 40px;
-    background: url('../img/arrow.svg') no-repeat center;
+    //background: url('../img/arrow.svg') no-repeat center;
+
+    svg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 25px;
+      height: 100%;
+    }
+
+    &:active {
+      svg {
+        fill-opacity: 0.5;
+      }
+    }
 
     @include mobile-xs {
       left: 20px;

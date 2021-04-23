@@ -3,13 +3,31 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background:
-    url('../img/main-screen-background.svg') no-repeat top left,
-    linear-gradient(to bottom, #1b1b1b, #000);
 
   img {
-    margin-bottom: 38px;
-    width: 100px;
+    width: 60%;
+  }
+
+  &__body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 50px;
+    padding-left: 50px;
+    height: 100vh;
+    background: var(--color-black);
+
+    &::after {
+      background: none;
+    }
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70vw;
+    height: 70vw;
   }
 
   &__text {
@@ -22,11 +40,19 @@
   }
 
   &__button {
+    display: block;
+    margin: 0;
     border: none;
     padding: 0;
-    margin: 0;
     width: 100%;
     height: 100%;
-    display: block;
+    background: url('../img/main-screen-background-top.svg') no-repeat top left,
+    url('../img/main-screen-background-bottom.svg') no-repeat bottom right,
+    #1b1b1b;
+    background-size: 70%;
   }
+}
+
+.loading.section {
+  min-height: initial;
 }
