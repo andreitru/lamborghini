@@ -21,8 +21,11 @@
       <input type="text" required name="surname" class="registration__input form__input" placeholder="Фамилия">
       <input type="text" required name="dc name" class="registration__input form__input" placeholder="Название ДЦ">
       <input type="text" required name="position" class="registration__input form__input" placeholder="Должность">
-      <input type="checkbox" name="personal data" id="checkbox" class="registration__checkbox" required>
-      <label for="checkbox" class="registration__label">Даю согласие на обработку персональных данных</label>
+      <div class="checkbox__container">
+        <input type="checkbox" name="personal data" id="checkbox" class="registration__checkbox" required>
+        <label for="checkbox" class="registration__label">Даю согласие на обработку персональных данных</label>
+      </div>
+
       <button class="btn-reset btn-submit registration__btn" type="submit">Зарегистрироваться</button>
     </form>
   </section>

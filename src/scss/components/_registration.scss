@@ -3,8 +3,11 @@
 
   &__checkbox {
     position: absolute;
+    left: 14px;
+    bottom: 0;
     z-index: -1;
     opacity: 0;
+    transform: translate(-50%);
   }
 
   &__label {
@@ -36,4 +39,8 @@
 
 .registration__checkbox:checked + label::before {
   background-image: url("../img/check-reg.svg");
+}
+
+.checkbox__container {
+  position: relative;
 }
