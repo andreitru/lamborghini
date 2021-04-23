@@ -89,7 +89,9 @@ const scriptsBackend = () => {
 };
 
 const resources = () => {
-  return src('./src/resources/**')
+  return src([
+    './src/resources/**',
+    ], { dot: true })
     .pipe(dest('./app'))
 }
 
