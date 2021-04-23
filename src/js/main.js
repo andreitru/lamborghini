@@ -1,11 +1,48 @@
+// service worker
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/service-worker.js");
+}
+
+// страница пин кода
+
+const accessForm = document.querySelector('.access__form');
+
+if (accessForm) {
+  const textinput = document.getElementById('code');
+
+  accessForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    if (textinput.value == '1259') {
+      window.location.href = 'registration.html';
+    }
+  })
+}
+
+
 // страница регистрации
 
 const mainScreen = document.querySelector('.main-screen');
 
 if (mainScreen) {
   if (!localStorage.getItem('userID')) {
-    window.location.href = 'registration.html';
+    window.location.href = 'access.html';
   }
+}
+
+// страница загрузки
+
+const loadingButton = document.querySelector('.loading__button');
+
+if (loadingButton) {
+  loadingButton.addEventListener('click', function () {
+    if (!localStorage.getItem('userID')) {
+      window.location.href = 'access.html';
+    } else {
+      window.location.href = '/';
+    }
+  })
 }
 
 // тесты

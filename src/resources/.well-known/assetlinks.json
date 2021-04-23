@@ -1,0 +1,5 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target" : { "namespace": "android_app", "package_name": "ru.alexstrnik.lamborghini.twa",
+                   "sha256_cert_fingerprints": ["99:3E:CC:23:C1:82:79:2B:C5:FA:A4:3C:9F:E9:24:BC:2E:EA:CE:18:3E:B7:47:0E:66:1A:A1:4C:72:59:AF:3D"] }
+    }]
