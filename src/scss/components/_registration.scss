@@ -1,5 +1,9 @@
 .registration {
-  padding-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('../img/main-screen-background-top.svg') no-repeat top left,
+  linear-gradient(to bottom, #1b1b1b, #000);
 
   &__checkbox {
     position: absolute;
