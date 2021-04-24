@@ -27,7 +27,7 @@ const mainScreen = document.querySelector('.main-screen');
 
 if (mainScreen) {
   if (!localStorage.getItem('userID')) {
-    window.location.href = 'access.html';
+    window.location.href = 'touch-to-start.html';
   }
 }
 
