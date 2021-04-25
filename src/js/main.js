@@ -322,6 +322,7 @@ if (modal) {
   img.onclick = function () {
     modal.style.display = "block";
     modalImg.src = modalImg.getAttribute('src');
+    document.querySelector('meta[name="viewport"]').setAttribute('content', "width=device-width, initial-scale=1.0, user-scalable=yes")
     // modalImg.src = "/img/hotel-map.jpg";
     // captionText.innerHTML = this.alt;
   }
@@ -332,6 +333,7 @@ if (modal) {
 // When the user clicks on <span> (x), close the modal
   span.onclick = function () {
     modal.style.display = "none";
+    document.querySelector('meta[name="viewport"]').setAttribute('content', "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
   }
 }
 

@@ -1,6 +1,6 @@
 const NOT_FOUND = 404;
 
-const CACHE_NAME = "lamborghini-app-v8";
+const CACHE_NAME = "lamborghini-app-v9";
 const APP_FILES = [
   "/",
   "/js/main.js",
