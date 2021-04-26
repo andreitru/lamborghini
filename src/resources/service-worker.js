@@ -1,6 +1,6 @@
 const NOT_FOUND = 404;
 
-const CACHE_NAME = "lamborghini-app-v10";
+const CACHE_NAME = "lamborghini-app-v11";
 const APP_FILES = [
   "/",
   "/fonts/GLInterstateBold.otf",
