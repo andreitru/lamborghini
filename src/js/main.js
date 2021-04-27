@@ -29,6 +29,35 @@ if (mainScreen) {
   if (!localStorage.getItem('userID')) {
     window.location.href = 'touch-to-start.html';
   }
+
+  if (navigator.onLine) {
+    const {createClient} = supabase
+    supabase = createClient(supabaseUrl, supabaseKey);
+
+    if (localStorage.getItem('tests')) {
+      for (let i = 0; i < JSON.parse(localStorage.getItem('tests')).length; i++) {
+        const results = JSON.parse(localStorage.getItem('tests'))[i]
+
+        // console.log()
+
+        const sendResults = async () => {
+          try {
+            return await supabase
+              .from('test_results')
+              .insert([
+                results
+              ]);
+          } catch (error) {
+            console.log('Error: ', error)
+          }
+        }
+
+        sendResults().then(() => {
+        });
+      }
+      localStorage.removeItem('tests')
+    }
+  }
 }
 
 // страница загрузки
@@ -145,6 +174,13 @@ if (testTitleCount) { // проверяем находимся ли мы на с
     question9: 0,
   }
 
+  let tests = []
+  if (localStorage.getItem('tests')) {
+    for (let i = 0; i < JSON.parse(localStorage.getItem('tests')).length; i++) {
+      tests.push(JSON.parse(localStorage.getItem('tests'))[i])
+    }
+  }
+
   button.addEventListener('click', function () {
     results[`question${counter}`] = rating;
 
@@ -172,19 +208,38 @@ if (testTitleCount) { // проверяем находимся ли мы на с
       localStorage.setItem(`${sessionStorage.getItem('testAuto')}`, strDate) // пишем дату прохождения в localStorage
 
       // отправляем результаты в базу данных
-      const sendResults = async () => {
-        try {
-          return await supabase
-            .from('test_results')
-            .insert([
-              results
-            ]);
-        } catch (error) {
-          console.log('Error: ', error)
+      if (navigator.onLine) {
+        const sendResults = async () => {
+          try {
+            return await supabase
+              .from('test_results')
+              .insert([
+                results
+              ]);
+          } catch (error) {
+            console.log('Error: ', error)
+          }
         }
-      }
 
-      sendResults().then(() => window.location.href = "test-drive.html");
+        sendResults().then(() => window.location.href = "test-drive.html");
+      } else {
+        tests.push(results)
+        localStorage.setItem('tests', JSON.stringify(tests))
+        window.location.href = "test-drive.html"
+      }
+      // const sendResults = async () => {
+      //   try {
+      //     return await supabase
+      //       .from('test_results')
+      //       .insert([
+      //         results
+      //       ]);
+      //   } catch (error) {
+      //     console.log('Error: ', error)
+      //   }
+      // }
+      //
+      // sendResults().then(() => window.location.href = "test-drive.html");
 
       // window.location.href = "test-drive.html"
     } else {
