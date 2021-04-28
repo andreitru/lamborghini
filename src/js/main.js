@@ -38,8 +38,6 @@ if (mainScreen) {
       for (let i = 0; i < JSON.parse(localStorage.getItem('tests')).length; i++) {
         const results = JSON.parse(localStorage.getItem('tests'))[i]
 
-        // console.log()
-
         const sendResults = async () => {
           try {
             return await supabase
@@ -207,7 +205,7 @@ if (testTitleCount) { // проверяем находимся ли мы на с
 
       localStorage.setItem(`${sessionStorage.getItem('testAuto')}`, strDate) // пишем дату прохождения в localStorage
 
-      // отправляем результаты в базу данных
+      // отправляем результаты в базу данных, если есть интернет
       if (navigator.onLine) {
         const sendResults = async () => {
           try {
@@ -222,26 +220,12 @@ if (testTitleCount) { // проверяем находимся ли мы на с
         }
 
         sendResults().then(() => window.location.href = "test-drive.html");
-      } else {
+      } else { // если интернета нет, пишем результат теста в localStorage
         tests.push(results)
         localStorage.setItem('tests', JSON.stringify(tests))
         window.location.href = "test-drive.html"
       }
-      // const sendResults = async () => {
-      //   try {
-      //     return await supabase
-      //       .from('test_results')
-      //       .insert([
-      //         results
-      //       ]);
-      //   } catch (error) {
-      //     console.log('Error: ', error)
-      //   }
-      // }
-      //
-      // sendResults().then(() => window.location.href = "test-drive.html");
 
-      // window.location.href = "test-drive.html"
     } else {
       counter++;
       question.textContent = `${questions[counter]}`;
@@ -295,16 +279,7 @@ if (canvasElement) {
       return e.id === res
     })
 
-    // if (urls.indexOf(res.split('-')[0]) < 0) { // проверяем полученный результат на соответствие url
     if (!id) {
-      // scanning = false;
-      // video.srcObject.getTracks().forEach(track => {
-      //   track.stop();
-      // });
-      // canvasElement.hidden = true;
-      // если url неверный, показываем ошибку и скрываем текст
-      // qrWrong.classList.add('qr__wrong--visible');
-      // qrText.classList.add('qr__text--hidden');
       qrText.textContent = 'Некорректный QR код'
       tick();
       scan();
@@ -314,7 +289,6 @@ if (canvasElement) {
         track.stop();
       });
       canvasElement.hidden = true;
-      // document.location.href = `${res}.html`
       sessionStorage.setItem('carSpec', JSON.stringify(id))
       document.location.href = 'spec.html';
     }
@@ -335,7 +309,6 @@ if (canvasElement) {
   function tick() {
     canvasElement.height = video.videoHeight;
     canvasElement.width = video.videoWidth;
-    // canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
     canvas.drawImage(video, 0, 0);
 
     scanning && requestAnimationFrame(tick);
@@ -366,26 +339,20 @@ if (specTitle) {
 
 // окно с изображением карты
 
-var modal = document.getElementById('myModal');
+const modal = document.getElementById('myModal');
 
-// Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementById('myImg');
-var modalImg = document.getElementById("img01");
-// var captionText = document.getElementById("caption");
+const img = document.getElementById('myImg');
+const modalImg = document.getElementById("img01");
 
 if (modal) {
   img.onclick = function () {
     modal.style.display = "block";
     modalImg.src = modalImg.getAttribute('src');
     document.querySelector('meta[name="viewport"]').setAttribute('content', "width=device-width, initial-scale=1.0, user-scalable=yes")
-    // modalImg.src = "/img/hotel-map.jpg";
-    // captionText.innerHTML = this.alt;
   }
 
-// Get the <span> element that closes the modal
-  var span = document.getElementsByClassName("close")[0];
+  const span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on <span> (x), close the modal
   span.onclick = function () {
     modal.style.display = "none";
     document.querySelector('meta[name="viewport"]').setAttribute('content', "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
